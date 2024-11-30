@@ -1,2 +1,2 @@
 # Solar-System
-I am making a website for a schol project.
+I am making a website for a school project.
