@@ -1,0 +1,203 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    
+} 
+
+#main { 
+    margin: 0;
+    padding: 0
+} 
+
+#heading {
+    padding: 10px;
+}
+
+#para1 {
+    padding: 10px;
+}
+
+#planet-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+.planet-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgb(150, 189, 170);
+    margin: 20px; /* distance from start of screen till text*/
+    padding: 10px; /* padding from title and such*/
+    width: 90%; /*width of container, takes up whole screen*/
+    border-radius: 10px; /* rounded corners */
+    box-sizing: border-box;
+}
+
+.planet-container:hover {
+    transform: scale(1.05); /* Increase the size by 5% on hover */
+    z-index: 1; /* Ensures it appears above other elements when scaled */
+}
+
+.planet-drawing {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.planet-details {
+    overflow: hidden;
+    flex-grow: 1;
+    color: rgb(0, 0, 0)
+}
+
+/* planets*/
+
+.planets-drawings { 
+    width: 100%;
+    display: flex;
+    padding: 0;
+    margin-top: 70px;
+    justify-content: center;
+
+}
+/*TOOLTIP PRÖV*/
+.planets-drawings div {
+    position: relative;  /* Ensure the tooltip is positioned relative to the planet */
+}
+
+.tooltip-text {
+    visibility: hidden;  /* Hide the tooltip by default */
+    width: 150px;  /* Set a width for the tooltip */
+    background-color: rgba(0, 0, 0, 0.75);  /* Background color of the tooltip */
+    color: #fff;  /* Tooltip text color */
+    text-align: center;  /* Center the text inside the tooltip */
+    border-radius: 5px;  /* Rounded corners */
+    padding: 0px;  /* Padding around the text */
+    position: absolute;  /* Position the tooltip relative to the planet */
+    z-index: 1;  /* Ensure the tooltip is above the planet */
+    bottom: 100%;  /* Position the tooltip above the planet */
+    left: 50%;  /* Center the tooltip horizontally */
+    transform: translateX(-50%);  /* Center the tooltip horizontally */
+    opacity: 0;  /* Make the tooltip invisible */
+    transition: opacity 0.3s;  /* Smooth transition for visibility */
+}
+
+/* Show the tooltip when hovering over the planet */
+.planets-drawings div:hover .tooltip-text {
+    visibility: visible;  /* Make the tooltip visible */
+    opacity: 1;  /* Make the tooltip fully opaque */
+}
+
+/* FINSIEHD TEXT*/
+
+
+.sun {
+    background: radial-gradient(circle, #ffdd00, #ff9900);
+    width: 70px;  /* Set a width */
+    height: 70px;  /* Set a height */
+    border-radius: 50%;  /* Make it round */
+    background: radial-gradient(circle, #ffdd00, #ff9900);  /* Apply the sun gradient */
+    margin: 5px;
+}
+
+.mercury {
+    background: radial-gradient(circle, #b2b2b2, #666666);
+    width: 30px;  /* Set a width */
+    height: 30px;  /* Set a height */
+    border-radius: 50%;  /* Make it round */
+    background: radial-gradient(circle, #b2b2b2, #666666);  /* Apply the sun gradient */
+    margin: 5px;
+}
+
+.venus {
+    background: radial-gradient(circle, #e3c27c, #9e7a38);
+    width: 40px;  /* Set a width */
+    height: 40px;  /* Set a height */
+    border-radius: 50%;  /* Make it round */
+    background: radial-gradient(circle, #e3c27c, #9e7a38);  /* Apply the sun gradient */
+    margin: 5px;
+}
+
+.earth {
+    background: radial-gradient(circle, #2e8b57, #87ceeb);
+    width: 40px;  /* Set a width */
+    height: 40px;  /* Set a height */
+    border-radius: 50%;  /* Make it round */
+    background: radial-gradient(circle, #2e8b57, #87ceeb);  /* Apply the sun gradient */
+    margin: 5px;
+}
+
+.mars {
+    background: radial-gradient(circle, #b22222, #8b0000);
+    width: 25px;  /* Set a width */
+    height: 25px;  /* Set a height */
+    border-radius: 50%;  /* Make it round */
+    background: radial-gradient(circle, #b22222, #8b0000);  /* Apply the sun gradient */
+    margin: 5px;
+}
+
+.jupiter {
+    background: radial-gradient(circle, #f4a460, #a0522d);
+    width: 80px;  /* Set a width */
+    height: 80px;  /* Set a height */
+    border-radius: 50%;  /* Make it round */
+    background: radial-gradient(circle, #f4a460, #a0522d);  /* Apply the sun gradient */
+    margin: 5px;
+}
+
+.saturn {
+    background: radial-gradient(circle, #d2b48c, #8b4513);
+    width: 40px;  /* Set a width */
+    height: 40px;  /* Set a height */
+    border-radius: 50%;  /* Make it round */
+    margin: 5px;
+    position: relative;
+}
+
+.ring2 { /* Saturns ring, child element of Saturn*/
+    background: radial-gradient(circle, #dedad5, #c2a8a5);
+    width: 80px;  /* Set a width */
+    height: 4px;  /* Set a height */
+    border-radius: 50%;  /* Make it round */
+    position: absolute;
+    top: 10px;
+    left: -20px;
+    z-index: 1;
+    transform: rotate(-20deg);
+    
+}
+
+.uranus {
+    background: radial-gradient(circle, #87ceeb, #4682b4);
+    width: 20px;  /* Set a width */
+    height: 20px;  /* Set a height */
+    border-radius: 50%;  /* Make it round */
+    background: radial-gradient(circle, #87ceeb, #4682b4);  /* Apply the sun gradient */
+    margin: 5px;
+}
+
+.neptune {
+    background: radial-gradient(circle, #4169e1, #00008b);
+    width: 20px;  /* Set a width */
+    height: 20px;  /* Set a height */
+    border-radius: 50%;  /* Make it round */
+    background: radial-gradient(circle, #4169e1, #00008b);  /* Apply the sun gradient */
+    margin: 5px;
+}
+
+
+/*SEARCH BAR*/
+.highlight {
+    outline: 3px solid yellow;
+    transition: outline 0.3s ease-out;
+}
+
+
+
