@@ -31,7 +31,6 @@ async function fetchPlanets(apiKey) {
       throw new Error(`Error: ${response.status}`);
     }
     let data = await response.json();
-    // console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching planets:", error);
@@ -64,28 +63,12 @@ async function loadSolarSystemData() {
   const uranus = planets.bodies[7];
   const neptune = planets.bodies[8];
 
-//   console.log(earth.name);
 
-// document.getElementById("sol").innerHTML = sun;
 console.log(planets.bodies);
 const planetList = document.getElementById("planet-list");
 
 planets.bodies.forEach((body) => {
     const listItem = document.createElement("li");
-
-    // moon info not working, why
-    // let moonInfo = "";
-    // if (body.moons && body.moons.length > 0) {
-    //     moonInfo = `
-    //     <h3>Moons:</h3>
-    //   <ul>
-    //     ${body.moons.map(moon => `<li>${moon.name}: ${moon.description || "No description available."}</li>`).join("")}
-    //   </ul>
-    //     `;
-    // } else {
-    //     moonInfo = `<p>No moons</p>`;
-    // }
-    //
 
     listItem.innerHTML = `
   <section class="planet-container">
@@ -111,11 +94,13 @@ planets.bodies.forEach((body) => {
     
   planetList.appendChild(listItem);
 });
+
  // SEARCH BAR START
 const searchBar = document.getElementById("search-bar");
 const searchButton = document.getElementById("search-button");
+const clearButton = document.getElementById("clear-button");
 const searchResult = document.getElementById("search-result");
-const planetsVisuals = document.querySelectorAll(".planets-drawings > section"); // The div elements for the visual planets
+const planetsVisuals = document.querySelectorAll(".planets-drawings > section"); // The elements for the visual planets
 
 // Function to perform search
 function performSearch() {
@@ -123,7 +108,7 @@ function performSearch() {
   searchResult.innerHTML = ""; // Clear previous results
 
   if (query === "") {
-    alert("Du måste skriva in namn för att söka.");
+    alert("Du måste skriva in en planet för att söka.");
     return;
   }
 
@@ -133,15 +118,38 @@ function performSearch() {
   planets.bodies.forEach((planet, index) => {
     if (planet.name.toLowerCase().includes(query)) {
       matches++;
-      
-      // Create a search result list item
-      const listItem = document.createElement("li");
-      listItem.textContent = planet.name;
 
-      // Scroll to the visual planet and highlight it
+       // Create a search result section for the planet details
+       const listItem = document.createElement("section");
+       listItem.classList.add("planet-container");
+       listItem.innerHTML = `
+         <section class="planet-details">
+             <h2><b>${planet.name}</b></h2>
+             <p><b>Latin: </b> ${planet.latinName}</p>
+             <p><b>Typ: </b>${planet.type}</p>
+             <p><b>Rotation: </b>${planet.rotation} jorddygn</p>
+             <p><b>Omkrets: </b>${planet.circumference} km</p>
+             <p><b>Temperatur Dag: </b>${planet.temp.day} &deg;C</p>
+             <p><b>Temperatur Natt: </b>${planet.temp.night} &deg;C</p>
+             <p><b>Avstånd från Solen: </b>${planet.distance} km</p>
+             <p><b>Omloppsperiod: </b>${planet.orbitalPeriod} jorddagar</p><br>
+             <p><b>Beskrivning: </b>${planet.desc}</p><br>
+             <p><b>Månar:</b></p>
+             <section class="moons-list">
+                 ${planet.moons && planet.moons.length > 0
+                   ? planet.moons.map(moon => `<span class="moon-name">${moon}</span>`).join(', ')
+                   : "Saknar månar"}
+             </section>
+         </section>
+       `;
+       searchResult.appendChild(listItem); //NEW
+    //    listItem.scrollIntoView({ behavior: "smooth", block: "center" }); //NEW
+
+
+      // Scroll to the visual planet and highlight it DONT DELETE
       listItem.addEventListener("click", function () {
         const visualPlanet = planetsVisuals[index]; // Match the visual planet by index
-        visualPlanet.scrollIntoView({ behavior: "smooth", block: "center" });
+        // visualPlanet.scrollIntoView({ behavior: "smooth", block: "center" });
 
         // Temporarily highlight the planet being serched for in white circle
         visualPlanet.classList.add("highlight");
@@ -150,13 +158,6 @@ function performSearch() {
 
       searchResult.appendChild(listItem);
 
-      // Automatically scroll to and highlight the first match
-      if (matches === 1) {
-        const firstMatch = planetsVisuals[index];
-        firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
-        firstMatch.classList.add("highlight");
-        setTimeout(() => firstMatch.classList.remove("highlight"), 2000);
-      }
     }
   });
 
@@ -172,6 +173,11 @@ function performSearch() {
 searchButton.addEventListener("click", performSearch);
 searchBar.addEventListener("keydown", (e) => {
   if (e.key === "Enter") performSearch(); // Search when pressing down enter key
+});
+
+clearButton.addEventListener("click", function() {
+    searchBar.value = ""; //clears search bar
+    searchResult.innerHTML = ""; //Clear the search result
 });
  // SEARCH BAR STOP
 

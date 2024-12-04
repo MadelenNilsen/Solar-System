@@ -14,30 +14,78 @@
 #heading {
     font-family: "Nunito", sans-serif;
     color: rgb(233, 216, 185);
-    /* margin: 30px; distance from start of screen to text */
-    /* padding: 10px; padding from title and such */
     margin-left: 30px;
     margin-bottom: 5px; 
-    /* padding: 2px; */
     padding: 0;
 }
 
 #para1 {
-    margin-left: 30px; /* distance from start of screen to text*/
+    margin-left: 30px; /*Distance from start of screen to text*/
     margin-top: 1px;
     padding: 10px;
     font-family: "Orbitron", sans-serif;
     color: rgb(153, 137, 137);
 }
 
+/*SEARCH BAR*/
+.search-container {
+    display: flex;
+    flex-direction: column; /*Stacks content vertically*/
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    color: white; /*Magnifying glass and text color*/
+}
+
+.search-bar-wrapper /*Needed to wrap icon and container together for desired layout*/ {
+    display: inline-flex; /*Span behaves differently than div, needs inline-block instead of flex*/
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /*Between icon and search-box*/
+    margin-bottom: 20px;
+    width: 100%
+}
+    
+.fa-search { /*icon*/
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px; /*Puts icon in middle of buttons, looks nicer*/
+}
+
+#search-bar {
+    font-family: "Dongle", sans-serif;
+    font-size: 20px;
+    width: 50%; /*Width of search-bar so it's not so small*/
+    margin-right: 10px;
+}
+
+#clear-button {
+    background-color: rgb(123, 118, 118);
+    color: rgb(255, 255, 255);
+    padding: 5px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#search-button {
+    display: none;
+}
+
+.highlight {
+    outline: 4px solid rgb(255, 255, 255);
+    transition: outline 0.3s ease-out;
+}
+
+
  /* PLANET LIST AND CONTAINER*/
 #planet-list {
-    list-style: none; /*removes bullet points*/
+    list-style: none; /*Removes bullet points*/
     padding: 0;
     margin: 0;
-    display: flex; /*flexes item*/
-    flex-wrap: wrap; /*makes text wrap*/
-    justify-content: center; /*centers content*/
+    display: flex; /*Flexes item*/
+    flex-wrap: wrap; /*Makes text wrap*/
+    justify-content: center; /*Centers content*/
 }
 
 .planet-container {
@@ -46,25 +94,25 @@
     justify-content: flex-start; /*this was center*/
     align-items: center; /* was flex-start*/
     background-color: rgb(190, 195, 213);
-    margin: 30px; /* distance from start of screen to text*/
-    padding: 10px; /* padding from title and such*/
-    width: 90%; /*width of container, takes up whole screen*/
-    border-radius: 20px; /*rounded corners*/
+    margin: 30px; /*Distance from start of screen to text*/
+    padding: 10px; /*Padding from title and such*/
+    width: 90%; /*Width of container, takes up whole screen*/
+    border-radius: 20px; /*Rounded corners*/
     box-sizing: border-box;
-    box-shadow: 10px 5px 5px  rgb(42, 13, 95); /*adds box shadow around it*/
+    box-shadow: 10px 5px 5px  rgb(42, 13, 95); /*Adds box shadow around it*/
 
-    margin-top: 0;
+    margin-top: 10px; /* THIS WAS 0*/   
     overflow-y: auto;
     flex-shrink: 0;
     max-width: 90%;
     flex-grow: 0;
-    word-wrap: break-word;  /* Break long words to avoid stretching */
-    overflow-wrap: break-word;  /* Ensure overflowed content wraps */
+    word-wrap: break-word;  /*Break long words to avoid stretching*/
+    overflow-wrap: break-word;  /*Ensure overflowed content wraps*/
 }
 
 .planet-container:hover {
-    transform: scale(1.05); /* Increase the size by 5% on hover */
-    z-index: 1; /* Ensures it appears above other elements when scaled */
+    transform: scale(1.05); /*Increase the size by 5% on hover*/
+    z-index: 1; /*Ensures it appears above other elements when scaled*/
 }
 
 
@@ -77,186 +125,235 @@
 }
 
 .planet-details {
-    /* overflow: hidden; */ /*find out more*/
     flex-grow: 1;
-    color: rgb(0, 0, 0)
+    color: rgb(0, 0, 0);
 }
 
 /* SEPERATE STYLINGS FOR MOON SINCE THEY CAUSED OVERFLOW*/
 .moon-name {
     font-size: 0.8rem;
-    display: inline-block; /* Ensure moons stay on the same line (or break if needed) */
-    word-wrap: break-word; /* Prevent long moon names from overflowing */
-    overflow-wrap: break-word;
+    display: inline-block; /*Ensure moons stay on the same line*/
+    word-wrap: break-word; /*Prevent long moon names from overflowing*/
+    overflow-wrap: break-word; /*breaks words*/
 }
 
-/* PLANETS */
+/* PLANET DRAWINGS */
 .planets-drawings { 
     width: 100%;
     display: flex;
     padding: 0;
     margin-top: 55px;
     justify-content: center;
-
     margin-bottom: 10px;
 
 }
 
 .sun {
     background: radial-gradient(circle, #ffdd00, #ff9900);
-    width: 70px;  /* Set a width */
-    height: 70px;  /* Set a height */
-    border-radius: 50%;  /* Make it round */
-    background: radial-gradient(circle, #ffdd00, #ff9900);  /* Apply the sun gradient */
+    width: 90px;  /*Set a width*/
+    height: 90px;  /*Set a height*/
+    border-radius: 50%;  /*Make it round*/
+    background: radial-gradient(circle, #ffdd00, #ff9900);  /*Apply the gradient*/
     margin: 5px;
 }
 
 .mercury {
     background: radial-gradient(circle, #b2b2b2, #666666);
-    width: 30px;  /* Set a width */
-    height: 30px;  /* Set a height */
-    border-radius: 50%;  /* Make it round */
-    background: radial-gradient(circle, #b2b2b2, #666666);  /* Apply the sun gradient */
+    width: 30px;  /*Set a width*/
+    height: 30px;  /*Set a height*/
+    border-radius: 50%;  /*Make it round*/
+    background: radial-gradient(circle, #b2b2b2, #666666);  /*Apply gradient*/
     margin: 5px;
 }
 
 .venus {
     background: radial-gradient(circle, #e3c27c, #9e7a38);
-    width: 40px;  /* Set a width */
-    height: 40px;  /* Set a height */
-    border-radius: 50%;  /* Make it round */
-    background: radial-gradient(circle, #e3c27c, #9e7a38);  /* Apply the sun gradient */
+    width: 40px;  /*Set a width*/
+    height: 40px;  /*Set a height*/
+    border-radius: 50%;  /*Make it round*/
+    background: radial-gradient(circle, #e3c27c, #9e7a38);  /* Apply gradient*/
     margin: 5px;
 }
 
 .earth {
     background: radial-gradient(circle, #2e8b57, #87ceeb);
-    width: 40px;  /* Set a width */
-    height: 40px;  /* Set a height */
-    border-radius: 50%;  /* Make it round */
-    background: radial-gradient(circle, #2e8b57, #87ceeb);  /* Apply the sun gradient */
+    width: 40px;  /*Set a width*/
+    height: 40px;  /*Set a height*/
+    border-radius: 50%;  /*Make it round*/
+    background: radial-gradient(circle, #2e8b57, #87ceeb);  /*Apply the gradient*/
     margin: 5px;
 }
 
 .mars {
     background: radial-gradient(circle, #b22222, #8b0000);
-    width: 30px;  /* Set a width */
-    height: 30px;  /* Set a height */
-    border-radius: 50%;  /* Make it round */
-    background: radial-gradient(circle, #b22222, #8b0000);  /* Apply the sun gradient */
+    width: 30px;  /*Set a width*/
+    height: 30px;  /*Set a height*/
+    border-radius: 50%;  /*Make it round*/
+    background: radial-gradient(circle, #b22222, #8b0000);  /*Apply the sun gradient*/
     margin: 5px;
 }
 
 .jupiter {
     background: radial-gradient(circle, #f4a460, #a0522d);
-    width: 80px;  /* Set a width */
-    height: 80px;  /* Set a height */
-    border-radius: 50%;  /* Make it round */
-    background: radial-gradient(circle, #f4a460, #a0522d);  /* Apply the sun gradient */
+    width: 80px;  /*Set a width*/
+    height: 80px;  /*Set a height*/
+    border-radius: 50%;  /*Make it round*/
+    background: radial-gradient(circle, #f4a460, #a0522d);  /* Apply the gradient*/
     margin: 5px;
 }
 
 .saturn {
     background: radial-gradient(circle, #d2b48c, #8b4513);
-    width: 50px;  /* Set a width */
-    height: 50px;  /* Set a height */
-    border-radius: 50%;  /* Make it round */
+    width: 50px;  /*Set a width*/
+    height: 50px;  /*Set a height*/
+    border-radius: 50%;  /*Make it round*/
     margin: 5px;
     position: relative;
 }
 
 .ring2 { /* Saturns ring, child element of Saturn*/
     background: radial-gradient(circle, #dedad5, #c2a8a5);
-    width: 80px;  /* Set a width */
-    height: 4px;  /* Set a height */
-    border-radius: 50%;  /* Make it round */
+    width: 80px;  /*Set a width*/
+    height: 4px;  /*Set a height*/
+    border-radius: 50%;  /*Make it round*/
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-20deg);
-    /* top: 10px; */
-    /* left: -20px; */
-    z-index: 1;
-    /* transform: rotate(-20deg); */
+    z-index: 1; /*Ensures the ring is ontop of planet rather than behind it*/
     
 }
 
 .uranus {
     background: radial-gradient(circle, #87ceeb, #4682b4);
-    width: 45px;  /* Set a width */
-    height: 45px;  /* Set a height */
-    border-radius: 50%;  /* Make it round */
-    background: radial-gradient(circle, #87ceeb, #4682b4);  /* Apply the sun gradient */
+    width: 45px;  /*Set a width*/
+    height: 45px;  /*Set a height*/
+    border-radius: 50%;  /*Make it round*/
+    background: radial-gradient(circle, #87ceeb, #4682b4);  /* Apply the sun gradient*/
     margin: 5px;
 }
 
 .neptune {
     background: radial-gradient(circle, #4169e1, #00008b);
-    width: 45px;  /* Set a width */
-    height: 45px;  /* Set a height */
-    border-radius: 50%;  /* Make it round */
-    background: radial-gradient(circle, #4169e1, #00008b);  /* Apply the sun gradient */
+    width: 45px;  /*Set a width*/
+    height: 45px;  /*Set a height*/
+    border-radius: 50%;  /*Make it round*/
+    background: radial-gradient(circle, #4169e1, #00008b);  /*Apply the sun gradient*/
     margin: 5px;
 }
 
-/*TOOLTIPS*/
+/* TOOLTIPS */
 .planets-drawings section {
-    position: relative;  /* Ensure the tooltip is positioned relative to the planet */
+    position: relative;  /*Ensure the tooltip is positioned relative to the planet*/
 }
 
 .tooltip-text {
-    visibility: hidden;  /* Hide the tooltip by default */
-    width: 150px;  /* Set a width for the tooltip */
-    background-color: rgba(0, 0, 0, 0.75);  /* Background color of the tooltip */
-    color: #fff;  /* Tooltip text color */
-    text-align: center;  /* Center the text inside the tooltip */
-    border-radius: 5px;  /* Rounded corners */
-    padding: 0px;  /* Padding around the text */
-    position: absolute;  /* Position the tooltip relative to the planet */
-    z-index: 1;  /* Ensure the tooltip is above the planet */
-    bottom: 100%;  /* Position the tooltip above the planet */
-    left: 50%;  /* Center the tooltip horizontally */
-    transform: translateX(-50%);  /* Center the tooltip horizontally */
-    opacity: 0;  /* Make the tooltip invisible */
-    transition: opacity 0.3s;  /* Smooth transition for visibility */
+    visibility: hidden;  /*Hide the tooltip by default*/
+    width: 150px;  /*Set a width for the tooltip*/
+    background-color: rgba(0, 0, 0, 0.75);  /*Background color of the tooltip*/
+    color: #fff;  /*Tooltip text color*/
+    text-align: center;  /*Center the text inside the tooltip*/
+    border-radius: 5px;  /*Rounded corners*/
+    padding: 0px;  /*Padding around the text*/
+    position: absolute;  /*Position the tooltip relative to the planet*/
+    z-index: 1;  /*Ensure the tooltip is above the planet*/
+    bottom: 100%;  /*Position the tooltip above the planet*/
+    left: 50%;  /*Center the tooltip horizontally*/
+    transform: translateX(-50%);  /*Center the tooltip horizontally*/
+    opacity: 0;  /*Make the tooltip invisible*/
+    transition: opacity 0.3s;  /*Smooth transition*/
 }
 
 .planets-drawings section:hover .tooltip-text {
-    visibility: visible;  /* Making the tooltip visible */
-    opacity: 1;  /* Make tooltip opaque */
+    visibility: visible;  /*Make the tooltip visible */
+    opacity: 1;  /*Make tooltip opaque*/
 }
  
 
-/*SEARCH BAR*/
-.search-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: white; /* magnifying glass and text color*/
-}
 
-#search-bar {
-    font-family: "Dongle", sans-serif;
-    margin-right: 10px;
-}
-
-#search-button {
-    display: none;
-}
-.highlight {
-    outline: 4px solid rgb(255, 255, 255);
-    transition: outline 0.3s ease-out;
-}
-
-/* STARS*/
+/* STARS */
 canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Places the canvas behind other elements */
+    z-index: -1; /*Places the canvas behind other elements*/
 }
 
+
+
+/* MEDIA QUERIES */
+
+
+/* For screens between 376px and 578px */
+@media (min-width: 360px) and (max-width: 578px) {
+    body {
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+    .planet-container {
+        flex-direction: column; /* Stack content vertically */
+        justify-content: center;
+        align-items: center;
+        margin: 20px auto; /* Center the container */
+        width: 90%; /* Limit width to avoid overflow */
+        max-width: 100%; /* Ensure no container overflows */
+        padding: 20px;
+        box-sizing: border-box; /* Include padding in width/height */
+    }
+
+    .planets-drawings {
+        display: flex;
+        flex-wrap: wrap; /* Allow content to wrap */
+        justify-content: center;
+        width: 100%; /* Ensure planets container doesn't overflow */
+        box-sizing: border-box; /* Prevents overflow */
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    .search-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 20px;
+        width: 90%; /* Ensure the search bar and button don't overflow */
+    }
+
+    #search-bar {
+        font-size: 20px; /* Adjust font size for readability */
+        width: 80%; /* Ensure the search bar doesn't take up too much space */
+        margin-bottom: 10px;
+    }
+
+    .tooltip {
+        font-size: 14px; /* Make tooltip text readable */
+        left: 10px;
+        top: 10px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .planet-container {
+        padding: 30px; /*Ensures padding inside container*/
+        margin: 20px auto; /*Center container and provide space around it*/
+        justify-content: center;
+        align-items: center;
+        height: auto; /*Ensures height is adjusted automatically*/
+        width: 90%; /* Make container a bit narrower to ensure padding space */
+        box-sizing: border-box; /* Ensures padding does not affect total width */
+    }
+
+    .tooltip {
+        font-size: 12px;
+        left: 10px; /* Add left positioning for tooltip */
+        top: 10px;/* Add top positioning for tooltip */
+        padding: 8px; /* Add padding to tooltip */
+        white-space: nowrap; /* Prevent tooltip from wrapping content */
+    } 
+}
 
 
